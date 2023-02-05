@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background: rgb(245, 242, 242);
+}
+
+.bg-color {
+    background: rgb(44, 29, 78);
+}
+
+.layer {
+    background: rgba(20, 19, 19, 0.5);
+}
