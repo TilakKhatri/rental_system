@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from '../../components/admin/Sidebar'
 import { Link } from 'react-router-dom'
+import { AiFillCheckCircle } from 'react-icons/ai'
 
 function Booking() {
     return (
@@ -61,8 +62,12 @@ function Booking() {
                                     5
                                 </td>
                                 <td class="border px-6 py-4">
-                                    {/* <a href="#" class="mx-2 font-bold text-green-600 dark:text-green-500 hover:underline">Edit</a> */}
-                                    <a href="#" class="mx-2 font-bold text-red-600 dark:text-red-500 hover:underline">Done</a>
+                                    <p className='cursor-pointer'>
+                                        <AiFillCheckCircle
+                                            fontSize="40px"
+                                            color='green'
+                                        />
+                                    </p>
                                 </td>
                             </tr>
 

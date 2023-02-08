@@ -12,7 +12,6 @@ function Users() {
     useEffect(() => {
         axios.get('http://localhost:8000/api/booking').then((response) => {
             setUsers(response.data);
-            // console.log(response.data)
         }).catch((err) => console.log(err));
     }, []);
 

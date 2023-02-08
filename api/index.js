@@ -1,15 +1,32 @@
 const express = require('express');
 const cors = require('cors');
+const multer = require('multer');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const app = express();
+
 const postRoutes = require('./routes/post');
 const bookRoutes = require('./routes/bookusers');
-const multer = require('multer');
-
-const app = express();
+const authRoutes = require('./routes/auth');
 
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(
+    session({
+        key: "tilak",
+        secret: "hello",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 60 * 60 * 24,
+        }
+    })
+);
+app.use(cookieParser());
+
+app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/booking', bookRoutes);
 

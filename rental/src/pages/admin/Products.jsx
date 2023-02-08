@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Sidebar from '../../components/admin/Sidebar';
 import { Link, useNavigate } from 'react-router-dom';
+import { AiTwotoneEdit } from 'react-icons/ai';
+import { CiCircleRemove } from 'react-icons/ci';
 import axios from 'axios';
 
 function Products() {
@@ -93,8 +95,8 @@ function Products() {
                                             <td className="border px-6 py-4">
                                                 <Link to={`/admin/addproduct?edit=${ele.Pid}`}
                                                     state={ele}
-                                                    className="mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
-                                                <p onClick={() => handleDelete(ele.Pid)} className="mx-2 font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer">Remove</p>
+                                                    className="mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline"><AiTwotoneEdit /></Link>
+                                                <p onClick={() => handleDelete(ele.Pid)} className="mx-2 font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer"><CiCircleRemove /></p>
                                             </td>
                                         </tr>
                                     )

@@ -7,6 +7,7 @@ import Products from './pages/admin/Products';
 import AddProduct from './components/admin/AddProduct';
 import Details from './components/Details';
 import Booknow from './pages/Booknow';
+import Login from './pages/admin/Login';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="*" element={<Home />} />
         <Route path="/booknow" element={<Booknow />} />
         <Route path="/posts/details/:id" element={<Details />} />
+        <Route path='/admin' element={<Login />} />
         <Route path='/admin/dashboard' element={<Dashboard />} />
         <Route path='/admin/bookings' element={<Booking />} />
         <Route path='/admin/users' element={<Users />} />
