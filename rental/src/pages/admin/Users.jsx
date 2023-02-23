@@ -20,6 +20,11 @@ function Users() {
             navigate('/admin/dashboard');
         }).catch(err => console.log(err))
     }
+    const verifyUser = (Uid) => {
+        axios.post(`http://localhost:8000/api/booking/${Uid}`)
+            .then(response => console.log(response))
+            .catch(err => console.log(err));
+    }
 
     const handleKeyup = (e) => {
         const searchData = bookedUsers.filter((item) => {
@@ -101,7 +106,7 @@ function Users() {
                                                     {user.rd}
                                                 </td>
                                                 <td className="border px-6 py-4">
-                                                    <a href="#" className="mx-2 font-medium text-blue-600 dark:text-green-500 hover:underline cursor-pointer">Verify</a>
+                                                    <p onClick={() => verifyUser(user.Uid)} className="mx-2 font-medium text-blue-600 dark:text-green-500 hover:underline cursor-pointer">Verify</p>
                                                     <p onClick={() => handleDelete(user.Uid)} className="mx-2 font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer">Remove</p>
                                                 </td>
                                             </tr>
@@ -133,9 +138,8 @@ function Users() {
                                                     {user.rd}
                                                 </td>
                                                 <td className="border px-6 py-4">
-                                                    <a href="#" className="mx-2 font-medium text-blue-600 dark:text-green-500 hover:underline cursor-pointer">Verify</a>
-                                                    <p onClick={() => handleDelete(user.Uid)} className="mx-2 font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer">Remove</p>
-                                                </td>
+                                                    <p onClick={() => verifyUser(user.Uid)} className="mx-2 font-medium text-blue-600 dark:text-green-500 hover:underline cursor-pointer">Verify</p>
+                                                    <p onClick={() => handleDelete(user.Uid)} className="mx-2 font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer">Remove</p></td>
                                             </tr>
                                         )
                                     })

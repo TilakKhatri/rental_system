@@ -15,7 +15,7 @@ function Details() {
     }, [])
     return (
         <>
-            <Navbar />
+
             <div className=" container mx-auto flex justify-center items-center">
                 <div class="max-w-xl " >
                     <a href="#" className='flex justify-center items-center'>

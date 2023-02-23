@@ -5,24 +5,33 @@ import { useEffect } from 'react';
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState();
+
+    const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("admin")) || null);
 
     const login = (input) => {
-        axios.post('http://localhost:8080/api/auth/login', input).then((response) =>
-            console.log("successfully logged in.")).catch((error) => console.log(error));
+        axios.post('http://localhost:8000/api/auth/login', input).then((response) => {
+            console.log('logged in.')
+            setCurrentUser(response.data)
+        }
+        ).catch((error) => console.log('wrong email or password.'));
     }
 
     const logout = () => {
-        axios.post('http://localhost:8080/api/auth/logout').then((response) =>
-            console.log("you are logged out.")).catch((error) => console.log(error));
+        // axios.post('http://localhost:8000/api/auth/logout').then((response) => {
+        //     setCurrentUser(null);
+        // }).catch((error) => console.log(error));
+        setCurrentUser(null);
     }
+    // useEffect(() => {
+    //     axios.get('http://localhost:8000/api/auth/login').then((response) => {
+    //         if (response.data.loggedIn == true) {
+    //             setCurrentUser(response.data.user[0]);
+    //         }
+    //     })
+    // }, [])
     useEffect(() => {
-        axios.get('http://localhost:8080/api/auth/logout').then((response) => {
-            if (response.data.loggedIn == true) {
-                setCurrentUser(response.data.user[0]);
-            }
-        })
-    }, [])
+        localStorage.setItem("admin", JSON.stringify(currentUser));
+    }, [currentUser]);
 
     return (
         <AuthContext.Provider value={{ currentUser, login, logout }}>

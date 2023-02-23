@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
+import { RiLogoutBoxFill, BiLogOutCircle } from 'react-icons/all';
 
 import './style.css'
 // https://github.com/codingwithmuhib/Car-Rantal-Dashboard/blob/main-source-code/src/routes/Router.js
 
 function Sidebar() {
+    const { currentUser, logout } = useContext(AuthContext)
     const navLinks = [
         {
             path: "/admin/dashboard",
             display: "Dashboard",
         },
         {
-            path: "/admin/bookings",
-            display: "Booking",
+            path: "/admin/serving",
+            display: "Serving",
         },
         {
             path: "/admin/users",
@@ -47,7 +50,15 @@ function Sidebar() {
                                 </NavLink>
                             </li>
                         ))}
+                        {
+                            currentUser && <li onClick={logout} className='flex space-x-1 items-center '>
+
+                                <BiLogOutCircle color='white' size='45' className='hover:text-gray-400' />
+                                <p className='cursor-pointer text-sm text-white hover:text-gray-300'>Logout</p>
+                            </li>
+                        }
                     </ul>
+
                 </div>
 
 

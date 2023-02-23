@@ -26,7 +26,7 @@ const addBooking = (req, res) => {
     });
 }
 const removeBookingusers = (req, res) => {
-    const deleteProduct = "DELETE FROM users_booked_bike WHERE Uid=?";
+    const deleteProduct = "DELETE FROM users_booked_bike WHERE Pid=?";
     db.query(deleteProduct, req.params.id, (err, data) => {
         if (err) return res.status(500).json(err);
         return res.status(200).json("User has been deleted.");

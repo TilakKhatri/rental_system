@@ -8,6 +8,7 @@ const app = express();
 const postRoutes = require('./routes/post');
 const bookRoutes = require('./routes/bookusers');
 const authRoutes = require('./routes/auth');
+const serveRoute = require('./routes/serve');
 
 app.use(express.json());
 app.use(cors());
@@ -15,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
     session({
-        key: "tilak",
+
         secret: "hello",
         resave: false,
         saveUninitialized: false,
@@ -29,6 +30,7 @@ app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/booking', bookRoutes);
+app.use('/api/serving', serveRoute);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

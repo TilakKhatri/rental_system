@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 
 function Login() {
-    const { login } = useContext(AuthContext);
+    const { currentUser, login } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const [input, setInput] = useState({
@@ -21,9 +21,10 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        login(input);
-        navigate('/admin/dashboard');
+        login(input)
+        // navigate('/admin/dashboard')
     }
+
 
     return (
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

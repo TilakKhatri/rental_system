@@ -2,17 +2,18 @@ const express = require('express');
 const db = require('../db');
 
 const login = (req, res) => {
-    db.query("SELECT * FROM admin WHERE email=?", [req.body.email], (err, data) => {
+    db.query("SELECT * FROM admin WHERE email=? AND password=?", [req.body.email, req.body.password], (err, data) => {
         if (err) return res.json(err);
-        if (data.length == 0) return res.status(404).json("Email doesn't exits.");
+        if (data.length == 0) return res.status(404).json("user not found.");
         req.session.user = data;
-        console.log(req.session.user);
-        res.send(data)
+        res.send(req.session.user[0].Email);
+        // res.status(200).json('successfully logged in.')
 
     })
 }
 
 const getUser = (req, res) => {
+    // console.log(req.session)
     if (req.session.user) {
         res.send({ loggedIn: true, user: req.session.user });
     } else {
@@ -21,9 +22,10 @@ const getUser = (req, res) => {
 }
 
 const logout = (req, res) => {
-    req.session.destroy((err) => {
-        res.redirect('/')
-    });
+    console.log('clicked')
+    // req.session.destroy((err) => {
+    //     console.log('logout')
+    // });
 }
 
 
