@@ -8,7 +8,7 @@ const getAll = (req, res) => {
 }
 
 const addRec = (req, res) => {
-    db.query("INSERT INTO booked (Pid,Pimg,Pname,Pdesc,Numberplate,Price,Username,email,phone,Address,Bookdate,Returndate) select p.Pid,Pimg,Pname,Pdesc,Numberplate,price_per_day,u.Fullname,u.Email,u.Phonenumber,u.Address,u.Bookdate,u.Returndate from products as p inner join users_booked_bike as u on p.Pid = u.Pid where u.Uid=?", [req.params.id], (err, data) => {
+    db.query("INSERT INTO booked (Pid,Pimg,Pname,Numberplate,Price,Username,email,phone,Address,Bookdate,Returndate) select p.Pid,Pimg,Pname,Pdesc,Numberplate,price_per_day,u.Fullname,u.Email,u.Phonenumber,u.Address,u.Bookdate,u.Returndate from products as p inner join users_booked_bike as u on p.Pid = u.Pid where u.Uid=?", [req.params.id], (err, data) => {
         if (err) return res.status(500).json(err);
         return res.status(200).json('Added to served');
     })
